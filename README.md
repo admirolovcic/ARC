@@ -1,4 +1,8 @@
-Test
+# PTAI Assignment 3
+
+The purpose of this repo fork is to hand code solutions to the ARC test set for the purposes of the PTAI at NUIG. In this case, we are not creating an algorithm which is capable of creating the coded solutions but instead creating the solutions through Human Intelligence. 
+If we refer to the proposed definition of intelligence in acompanying "The Measure of Intelligence" paper we (the human developers) are effectively taking the place of the proposed General Intelligence algorithm. Or in other words, we are digitising the process of manually solving the abstract reasoning problems. 
+
 # The Abstraction and Reasoning Corpus (ARC)
 
 This repository contains the ARC task data, as well as a browser-based interface for humans to try their hand at solving the tasks manually.

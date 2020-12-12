@@ -35,7 +35,7 @@ def solve_3631a71a(x):
                     
     return x
 """
-
+"""
 def solve_681b3aeb(x):
     flat_list = x.flatten()
     c = Counter(flat_list)
@@ -68,9 +68,66 @@ def solve_681b3aeb(x):
             candidate = m1 + m2
             if(list(candidate.flatten()).count(0) == 0):
                 return candidate
-
-# def solve_05269061(x):
-#     return x
+"""
+def solve_5ad4f10b(x):
+    main_color = None
+    for i in range(len(x)-2):
+        if(main_color != None):
+            break
+        for j in range(len(x[0])-2):
+            scanner = x[i:i+2,j:j+2]
+            set_of_colors = list(set(scanner.flatten()))
+            if((len(set_of_colors) == 1) & (set_of_colors[0] != 0)):
+                main_color = set_of_colors[0]
+                break
+            
+    flat_x = x.flatten()
+    list_of_all_colors = list(set(flat_x))
+    list_of_all_colors.remove(0)
+    list_of_all_colors.remove(main_color)
+    secondary_color = list_of_all_colors[0]
+    array_width = len(x[0])
+    array_height = len(x)
+    
+    for i in range(array_width):
+        column = x[:,i]
+        if((main_color in column)):
+            start_column = i
+            break
+        
+    for i in range(array_width):
+        column = x[:,array_width -i -1]
+        if((main_color in column)):
+            end_column = array_width - i
+            break    
+    
+    for i in range(array_height):
+        row = x[i,:]
+        if((main_color in row)):
+            start_row = i
+            break
+    
+    for i in range(array_height):
+        row = x[array_height -i -1,:]
+        if((main_color in row)):
+            end_row = array_height - i
+            break 
+    
+    isolated_shape = x[start_row:end_row,start_column:end_column]        
+    shape_length = len(isolated_shape[0])
+    shape_height = len(isolated_shape)
+    
+    output_array = np.array([[0,0,0],[0,0,0],[0,0,0]])
+    
+    for i in range(int(shape_height/3)):
+        for j in range(int(shape_length/3)):
+            start_i = int((i * shape_length) / 3)
+            start_j = int((j * shape_length) / 3)
+            subdivision = isolated_shape[start_i : start_i + int(shape_length/3), start_j : start_j + int(shape_height/3)]
+            if(main_color in list(subdivision.flatten())):
+                output_array[i,j] = secondary_color
+    
+    return output_array
 
 
 def main():
